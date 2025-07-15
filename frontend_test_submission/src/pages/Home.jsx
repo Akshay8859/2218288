@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Log from "../../../Logging_middleware"
 export default function Home() {
   const [urls, setUrls] = useState([{ url: "", validity: "", shortcode: "" }]);
   const [results, setResults] = useState([]);
@@ -20,19 +19,24 @@ export default function Home() {
     const res = await Promise.all(
       validated.map(async ({ url, validity, shortcode }) => {
         try {
-          const response = await fetch("http://localhost:3001/shorten",{ method: "POST",
+          const response = await fetch("http://localhost:3001/shorten",{ headers: {
+  "Content-Type": "application/json"
+},method: "POST",
       body: JSON.stringify({
         originalUrl: url,
         customCode: shortcode || undefined,
       }),});
           const data = await response.json();
+          console.log("API response:", data.shortUrl);
+          
           return {
             original: url,
-            short: data.result.full_short_link,
+            short: data.shortUrl || "Failed",
             expiry: validity ? `${validity} minutes` : "∞",
-            shortcode: shortcode || data.result.code,
+            shortcode: shortcode 
           };
         } catch (e) {
+            console.error("Error shortening URL:", e);
           return { original: url, short: "Failed", expiry: "-", shortcode: "-" };
         }
       })

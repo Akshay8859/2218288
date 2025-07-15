@@ -14,7 +14,7 @@ app.post('/shorten', (req, res) => {
   const { originalUrl, customCode } = req.body;
   if (!originalUrl) {
     Log("backend", "warn", "route", "No originalUrl provided");
-    return res.status(400).json({ error: "URL required" });
+    return res.status(400).json({ error: "URL required hai" });
   }
 
   const code = customCode || shortid.generate().slice(0, 6);
@@ -23,7 +23,7 @@ app.post('/shorten', (req, res) => {
   }
 
   urlDB[code] = { originalUrl, clicks: 0 };
-  Log("backend", "info", "route", `URL shortened with code ${code}`);
+  Log({stack:"backend", level:"info", package:"route", message:`URL shortened with code ${code}`});
   res.json({ shortUrl: `http://localhost:3000/${code}` });
 });
 
