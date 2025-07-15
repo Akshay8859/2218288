@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
+import "../styles/Home.css"; // Assuming you have a CSS file for styling
 export default function Home() {
-  const [urls, setUrls] = useState([{ url: "", validity: "", shortcode: "" }]);
+  const [urls, setUrls] = useState([{ url: "", shortcode: "" }]);
   const [results, setResults] = useState([]);
 
   const handleChange = (index, key, value) => {
@@ -11,13 +11,13 @@ export default function Home() {
   };
 
   const addField = () => {
-    if (urls.length < 5) setUrls([...urls, { url: "", validity: "", shortcode: "" }]);
+    if (urls.length < 5) setUrls([...urls, { url: "", shortcode: "" }]);
   };
 
   const handleSubmit = async () => {
     const validated = urls.filter((u) => u.url.trim());
     const res = await Promise.all(
-      validated.map(async ({ url, validity, shortcode }) => {
+      validated.map(async ({ url, shortcode }) => {
         try {
           const response = await fetch("http://localhost:3001/shorten",{ headers: {
   "Content-Type": "application/json"
@@ -32,7 +32,7 @@ export default function Home() {
           return {
             original: url,
             short: data.shortUrl || "Failed",
-            expiry: validity ? `${validity} minutes` : "∞",
+            
             shortcode: shortcode 
           };
         } catch (e) {
@@ -56,12 +56,6 @@ export default function Home() {
             onChange={(e) => handleChange(idx, "url", e.target.value)}
           />
           <input
-            type="number"
-            placeholder="Validity (min)"
-            value={item.validity}
-            onChange={(e) => handleChange(idx, "validity", e.target.value)}
-          />
-          <input
             type="text"
             placeholder="Shortcode (optional)"
             value={item.shortcode}
@@ -78,7 +72,7 @@ export default function Home() {
           <ul>
             {results.map((r, idx) => (
               <li key={idx}>
-                <strong>{r.original}</strong> → <a href={`https://${r.short}`} target="_blank" rel="noreferrer">{r.short}</a> (⏳ {r.expiry})
+                <strong>{r.original}</strong> → <a href={`https://${r.short}`} target="_blank" rel="noreferrer">{r.short}</a> 
               </li>
             ))}
           </ul>
