@@ -72,7 +72,7 @@ export default function Home() {
           <ul>
             {results.map((r, idx) => (
               <li key={idx}>
-                <strong>{r.original}</strong> → <a href={`https://${r.short}`} target="_blank" rel="noreferrer">{r.short}</a> 
+                <strong>{r.original}</strong> → <a href={`${r.short}`} target="_blank" rel="noreferrer">{r.short}</a> 
               </li>
             ))}
           </ul>

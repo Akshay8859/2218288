@@ -14,7 +14,7 @@ app.post('/shorten', (req, res) => {
   const { originalUrl, customCode } = req.body;
   if (!originalUrl) {
     Log("backend", "warn", "route", "No originalUrl provided");
-    return res.status(400).json({ error: "URL required hai" });
+    return res.status(400).json({ error: "URL required" });
   }
 
   const code = customCode || shortid.generate().slice(0, 6);

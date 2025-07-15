@@ -8,7 +8,7 @@ export default function Stats() {
 
     const mock = [
       {
-        shortUrl: "https://shrtco.de/abc123",
+        shortUrl: "https://localhost:3000/abc123",
         createdAt: "2025-07-15T10:00:00Z",
         expiresAt: "2025-07-15T12:00:00Z",
         clicks: 5,

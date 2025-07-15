@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Stats from "./pages/Stats";
+import RedirectHandler from "./pages/RedirectHandler";
 import "./App.css";
 
 export default function App() {
@@ -15,6 +16,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/stats" element={<Stats />} />
+          <Route path=":code" element={<RedirectHandler />} />
+
         </Routes>
       </div>
     </Router>
