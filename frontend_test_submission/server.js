@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const shortid = require('shortid');
-const Log = require('./log'); // make sure log.js works
+const Log = require('../Logging_middleware'); // make sure log.js works
 const app = express();
 
 const PORT = 3001;

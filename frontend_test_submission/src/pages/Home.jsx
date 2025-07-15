@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 //import "./Home.css";
-
+import Log from "../../../Logging_middleware"
 export default function Home() {
   const [urls, setUrls] = useState([{ url: "", validity: "", shortcode: "" }]);
   const [results, setResults] = useState([]);
@@ -20,7 +20,11 @@ export default function Home() {
     const res = await Promise.all(
       validated.map(async ({ url, validity, shortcode }) => {
         try {
-          const response = await fetch("https://api.shrtco.de/v2/shorten?url=" + encodeURIComponent(url));
+          const response = await fetch("http://localhost:3001/shorten",{ method: "POST",
+      body: JSON.stringify({
+        originalUrl: url,
+        customCode: shortcode || undefined,
+      }),});
           const data = await response.json();
           return {
             original: url,

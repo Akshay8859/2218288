@@ -25,11 +25,11 @@ async function Log(req, res, next) {
     const responseText = await apiResponse.text(); 
 
     return res.status(apiResponse.status).send(responseText);
-    
+
   } catch (err) {
     console.error("⚠️ Failed to forward log:", err);
     return res.status(500).json({ error: "Internal server error" });
   }
 }
 
-export default Log;
+module.exports=Log;
