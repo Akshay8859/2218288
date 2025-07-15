@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-//import "./Stats.css";
+
 
 export default function Stats() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Dummy data for now
+
     const mock = [
       {
         shortUrl: "https://shrtco.de/abc123",
