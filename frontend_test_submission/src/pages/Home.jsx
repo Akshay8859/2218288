@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Home.css"; // Assuming you have a CSS file for styling
+import "../styles/Home.css"; 
 export default function Home() {
   const [urls, setUrls] = useState([{ url: "", shortcode: "" }]);
   const [results, setResults] = useState([]);

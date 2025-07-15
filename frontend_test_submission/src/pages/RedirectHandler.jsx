@@ -5,7 +5,7 @@ const Redirector = () => {
 
   React.useEffect(() => {
     const clickID = `redirect_${code}_${Date.now()}`;
-    console.log("🔁 Redirecting using code:", code);
+    console.log("Redirecting using code:", code);
     window.location.href = `http://localhost:3001/r/${code}`;
   }, [code]);
 
